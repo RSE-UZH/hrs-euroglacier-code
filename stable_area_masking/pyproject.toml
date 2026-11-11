@@ -1,0 +1,62 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "stable_area_masking"
+version = "0.1.0"
+description = "A package for creating stable area masks from land cover data and vector geometries"
+readme = "README.md"
+authors = [{ name = "Your Name", email = "your.email@example.com" }]
+maintainers = [{ name = "Your Team", email = "team@example.com" }]
+license = { file = "LICENSE" }
+requires-python = ">=3.8"
+keywords = ["coregistration", "masking", "stable area", "land cover", "glacier"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Programming Language :: Python :: 3",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: GIS",
+]
+dependencies = [
+    "numpy<=2.3",
+    "xdem",
+    "geoutils<=0.1.16",
+    "geopandas<=1.0.1",
+    "rasterio",
+    "matplotlib",
+    "scipy",
+    "shapely",
+    "tqdm",
+    "planetary_computer",
+    "pystac_client",
+    "rioxarray",
+    "joblib",
+]
+
+[project.urls]
+Homepage = "https://github.com/yourusername/stable_area_masking"
+Documentation = "https://github.com/yourusername/stable_area_masking"
+Repository = "https://github.com/yourusername/stable_area_masking"
+
+[project.optional-dependencies]
+viz = ["folium>=0.12.0", "seaborn>=0.11.0", "contextily>=1.2.0", "click>=8.0.0"]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=2.12.0",
+    "black>=22.0.0",
+    "ruff>=0.0.240",
+    "pre-commit>=2.17.0",
+    "mkdocs>=1.3.0",
+    "mkdocs-material>=8.3.0",
+    "mkdocstrings[python]>=0.18.0",
+]
+all = ["stable_area_masking[viz,dev]"]
+
+[tool.hatch]
+version.path = "src/stable_area_masking/__init__.py"
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+addopts = ["-ra", "--showlocals", "--strict-markers", "--strict-config"]
+testpaths = ["tests"]

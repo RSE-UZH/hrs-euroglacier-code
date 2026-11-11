@@ -1,0 +1,84 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "spot5"
+version = "0.0.1"
+description = ""
+readme = "README.md"
+authors = [{ name = "Francesco Ioli", email = "francesco.ioli@geo.uzh.ch" }]
+maintainers = [
+    { name = "Remote sensing of Environmental Changes Group UZH", email = "francesco.ioli@geo.uzh.ch" },
+]
+license = { file = "LICENSE" }
+requires-python = ">=3.10"
+keywords = []
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "License :: OSI Approved :: BSD License",
+    "Programming Language :: Python :: 3",
+]
+dependencies = [
+    "numpy<=2.3",
+    "xdem",
+    "geoutils<=0.1.16",
+    "geopandas<=1.0.1",
+    "matplotlib",
+    "pandas",
+    "rasterio",
+    "pyproj",
+    "tqdm",
+    "joblib",
+    "shapely",
+    "seaborn",
+    "graphviz",
+    "cmcrameri",
+    "ipympl",
+    "ipywidgets",
+    "ipykernel",
+    "scikit-learn",
+]
+
+[project.urls]
+Homepage = "https://github.com/RSE-UZH/spot5"
+Documentation = "https://github.com/RSE-UZH/spot5/"
+Repository = "https://github.com/RSE-UZH/spot5"
+
+[project.optional-dependencies]
+dev = [
+    "ruff",
+    "bumpver",
+    "pip-tools",
+    "pytest",
+    "pytest-mock",
+    "mkdocs",
+    "mkdocs-material",
+    "mkdocstrings[python]",
+    "pre-commit",
+    "icecream",
+]
+
+[tool.hatch]
+version.path = "src/spot5/__init__.py"
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+addopts = ["-ra", "--showlocals", "--strict-markers", "--strict-config"]
+xfail_strict = true
+filterwarnings = ["error"]
+log_cli_level = "info"
+testpaths = ["tests"]
+
+
+[tool.bumpver]
+current_version = "0.0.1"
+version_pattern = "MAJOR.MINOR.PATCH"
+commit_message = "bump version {old_version} -> {new_version}"
+commit = true
+tag = false
+push = false
+
+[tool.bumpver.file_patterns]
+"pyproject.toml" = ['current_version = "{version}"', 'version = "{version}"']
+"src/spot5hr/__init__.py" = ["{version}"]
